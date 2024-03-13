@@ -447,7 +447,7 @@ if_alloc! {
         }
 
         pub fn get_libraries<'a>(&self, strtab: &Strtab<'a>) -> Vec<&'a str> {
-            use log::warn;
+            // use log::warn;
             let count = self.info.needed_count.min(self.dyns.len());
             let mut needed = Vec::with_capacity(count);
             for dynamic in &self.dyns {
@@ -455,7 +455,7 @@ if_alloc! {
                     if let Some(lib) = strtab.get_at(dynamic.d_val as usize) {
                         needed.push(lib)
                     } else {
-                        warn!("Invalid DT_NEEDED {}", dynamic.d_val)
+                        // warn!("Invalid DT_NEEDED {}", dynamic.d_val)
                     }
                 }
             }
