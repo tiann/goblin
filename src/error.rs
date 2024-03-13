@@ -61,9 +61,9 @@ impl fmt::Display for Error {
             #[cfg(feature = "std")]
             Error::IO(ref err) => write!(fmt, "{}", err),
             Error::Scroll(ref err) => write!(fmt, "{}", err),
-            Error::BadMagic(magic) => write!(fmt, "Invalid magic number: 0x{:x}", magic),
-            Error::Malformed(ref msg) => write!(fmt, "Malformed entity: {}", msg),
-            Error::BufferTooShort(n, item) => write!(fmt, "Buffer is too short for {} {}", n, item),
+            Error::BadMagic(magic) => write!(fmt, "BadMagic: 0x{:x}", magic),
+            Error::Malformed(ref msg) => write!(fmt, "Bad entity: {}", msg),
+            Error::BufferTooShort(n, item) => write!(fmt, "BufferTooShort {} {}", n, item),
         }
     }
 }

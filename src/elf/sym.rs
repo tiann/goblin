@@ -518,7 +518,7 @@ if_alloc! {
             let size = count
                 .checked_mul(Sym::size_with(&ctx))
                 .ok_or_else(|| crate::error::Error::Malformed(
-                    format!("Too many ELF symbols (offset {:#x}, count {})", offset, count)
+                    format!("Parse failed {:#x}, {}", offset, count)
                 ))?;
             // TODO: make this a better error message when too large
             let bytes = bytes.pread_with(offset, size)?;

@@ -429,7 +429,7 @@ if_sylvan! {
         let bloom_size = bytes.pread_with::<u32>(offset + 8, ctx.le)? as usize;
         // We could handle min_chain==0 if we really had to, but it shouldn't happen.
         if buckets_num == 0 || min_chain == 0 || bloom_size == 0 {
-            return Err(error::Error::Malformed(format!("Invalid DT_GNU_HASH: buckets_num={} min_chain={} bloom_size={}",
+            return Err(error::Error::Malformed(format!("Parse failed: {},{},{}",
                                                        buckets_num, min_chain, bloom_size)));
         }
         // Find the last bucket.
@@ -481,7 +481,7 @@ if_sylvan! {
         let endianness = scroll::Endian::from(is_lsb);
         let class = header.e_ident[header::EI_CLASS];
         if class != header::ELFCLASS64 && class != header::ELFCLASS32 {
-            return Err(error::Error::Malformed(format!("Unknown values in ELF ident header: class: {} endianness: {}",
+            return Err(error::Error::Malformed(format!("Parse failed {},{}",
                                                         class,
                                                         header.e_ident[header::EI_DATA])));
         }

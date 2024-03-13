@@ -456,7 +456,7 @@ macro_rules! elf_header_std_impl {
                         match elf_header.e_ident[EI_DATA] {
                             ELFDATA2LSB => scroll::LE,
                             ELFDATA2MSB => scroll::BE,
-                            d => return Err(Error::Malformed(format!("invalid ELF endianness DATA type {:x}", d)).into()),
+                            d => return Err(Error::Malformed(format!("Parse failed {:x}", d)).into()),
                         };
                     elf_header.e_type =      bytes.gread_with(offset, endianness)?;
                     elf_header.e_machine =   bytes.gread_with(offset, endianness)?;
